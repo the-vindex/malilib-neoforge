@@ -1,21 +1,11 @@
 plugins {
 	id 'team.cagayakegirls.scripts'
 	id 'dev.architectury.loom'
-	id 'com.hypherionmc.modutils.modpublisher' version '2.+'
 	id 'maven-publish'
 }
 
-repositories {
-//	maven {url = "https://masa.dy.fi/maven/sakura-ryoko"
-//		content {includeGroupAndSubgroups("fi.dy.masa")}
-	maven {url = 'https://maven.fallenbreath.me/releases'
-		content {includeGroupAndSubgroups("me.fallenbreath")}
-	}
-	maven { url = 'https://maven.terraformersmc.com/releases/'
-		content {includeGroupAndSubgroups("com.terraformersmc")}
-	}
-	maven { url = 'https://api.modrinth.com/maven' }
-}
+// Audited fork (Overseer): no extra repositories; dependencies come from Mojang, NeoForge and FabricMC/Architectury
+// (mappings) only, checked by gradle/verification-metadata.xml.
 
 /*
 fabricApi {
@@ -33,8 +23,7 @@ dependencies {
 	implementation "com.google.code.findbugs:jsr305:3.0.2"
 //	implementation "org.jspecify:jspecify:1.0.0"
 
-	include(modApi(forgifiedFabricApi.module("fabric-api-base", project.fabric_api_version, true)))
-	include(modApi(forgifiedFabricApi.module("fabric-networking-api-v1", project.fabric_api_version, true)))
+	// Audited fork: the bundled Forgified Fabric API (base + networking) is removed; nothing here uses it.
 
 	//modRuntimeOnly 'me.fallenbreath:mixin-auditor:0.1.0'
 }
@@ -96,8 +85,8 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 tasks.withType(AbstractArchiveTask).configureEach {
-	preserveFileTimestamps = true
-	//reproducibleFileOrder = true
+	preserveFileTimestamps = false
+	reproducibleFileOrder = true
 }
 
 java {
@@ -117,49 +106,17 @@ jar {
 
 remapJar.atAccessWideners.add("malilib.accesswidener")
 
-tasks.publish.dependsOn build
 publishing {
 	publications {
 		mavenJava(MavenPublication) {
-			// add all the jars that should be included when publishing to maven
-			//artifact(jar)             { builtBy remapJar }
 			artifactId = base.archivesName.get()
 			from components.java
 		}
 	}
-
+	// The forks repo's local Maven (FORKS_MAVEN): Litematica builds against this source-built jar only.
 	repositories {
-		maven {
-			url = "$projectDir/../../CommonMaven"
-		}
-
-		maven {
-			name = "KTTMaven"
-			url = "https://maven.kessokuteatime.work/releases"
-
-			credentials {
-				username = System.getenv("KTT_MAVEN_USERNAME")
-				password = System.getenv("KTT_MAVEN_TOKEN")
-			}
+		if (System.getenv("FORKS_MAVEN")) {
+			maven { name = "forks"; url = System.getenv("FORKS_MAVEN") }
 		}
 	}
-}
-
-publisher {
-	apiKeys {
-		modrinth System.getenv("MODRINTH_TOKEN")
-		curseforge System.getenv("CURSEFORGE_TOKEN")
-	}
-
-	setCurseID("${libs.versions.platformId.curseforge.get()}")
-	setModrinthID("${libs.versions.platformId.modrinth.get()}")
-	setVersionType("${libs.versions.version.type.get()}")
-	setChangelog(file("CHANGELOG.md").getText("UTF-8"))
-	setVersion("${project.version}")
-	setDisplayName("${project.version}")
-	setGameVersions("1.21.1")
-	setLoaders(loom.platform.get().id())
-	setCurseEnvironment("${libs.versions.version.env.get()}")
-	setArtifact(remapJar)
-	addAdditionalFile(sourcesJar)
 }

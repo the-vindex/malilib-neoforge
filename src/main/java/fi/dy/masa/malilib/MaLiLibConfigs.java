@@ -72,8 +72,6 @@ public class MaLiLibConfigs implements IConfigHandler
         public static final ConfigBoolean DEBUG_MESSAGES            = new ConfigBoolean("debugMessages",false).apply(DEBUG_KEY);
         public static final ConfigBoolean CONFIG_ELEMENT_DEBUG      = new ConfigBoolean("configElementDebug", false).apply(DEBUG_KEY);
         public static final ConfigBoolean INPUT_CANCELLATION_DEBUG  = new ConfigBoolean("inputCancellationDebugging", false).apply(DEBUG_KEY);
-        public static final ConfigBoolean KEYBIND_DEBUG             = new ConfigBoolean("keybindDebugging", false).apply(DEBUG_KEY);
-        public static final ConfigBoolean KEYBIND_DEBUG_ACTIONBAR   = new ConfigBoolean("keybindDebuggingIngame", false).apply(DEBUG_KEY);
         public static final ConfigBoolean MOUSE_SCROLL_DEBUG        = new ConfigBoolean("mouseScrollDebug", false).apply(DEBUG_KEY);
         public static final ConfigBoolean PRINT_TRANSLATION_KEYS    = new ConfigBoolean("printTranslationKeys", false).apply(DEBUG_KEY);
 
@@ -81,8 +79,6 @@ public class MaLiLibConfigs implements IConfigHandler
                 DEBUG_MESSAGES,
                 CONFIG_ELEMENT_DEBUG,
                 INPUT_CANCELLATION_DEBUG,
-                KEYBIND_DEBUG,
-                KEYBIND_DEBUG_ACTIONBAR,
                 MOUSE_SCROLL_DEBUG,
                 PRINT_TRANSLATION_KEYS
         );

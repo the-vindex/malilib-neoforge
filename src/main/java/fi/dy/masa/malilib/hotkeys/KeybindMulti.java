@@ -462,11 +462,6 @@ public class KeybindMulti implements IKeybind
                 PRESSED_KEYS.remove(valObj);
             }
         }
-
-        if (MaLiLibConfigs.Debug.KEYBIND_DEBUG.getBooleanValue())
-        {
-            printKeybindDebugMessage(keyCode, scanCode, modifiers, action);
-        }
     }
 
     /**
@@ -490,26 +485,6 @@ public class KeybindMulti implements IKeybind
         if (PRESSED_KEYS.size() == 0)
         {
             triggeredCount = 0;
-        }
-    }
-
-    private static void printKeybindDebugMessage(int keyCode, int scanCode, int modifiers, int action)
-    {
-        String keyName = keyCode != KeyCodes.KEY_NONE ? KeyCodes.getNameForKey(keyCode) : "<unknown>";
-        String type = action == GLFW.GLFW_PRESS ? "PRESS" : (action == GLFW.GLFW_RELEASE ? "RELEASE" : "REPEAT");
-        String held = getActiveKeysString();
-        String msg = String.format("%s %s (%d, m: %d), held: %s", type, keyName, keyCode, modifiers, held);
-        String msgConsole = String.format("%s %s (keyCode: %d, scanCode: %d, modifiers: %d), held keys: %s",
-                                          type, keyName, keyCode, scanCode, modifiers, held);
-
-        if (action != GLFW.GLFW_REPEAT)
-        {
-            MaLiLib.LOGGER.info(msgConsole);
-        }
-
-        if (MaLiLibConfigs.Debug.KEYBIND_DEBUG_ACTIONBAR.getBooleanValue())
-        {
-            InfoUtils.printActionbarMessage(msg);
         }
     }
 

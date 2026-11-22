@@ -26,8 +26,6 @@
         "screen.MixinChatScreen",
         "screen.MixinHandledScreen",
         "screen.MixinInventoryScreen",
-        "server.MixinIntegratedServer",
-        "server.MixinMinecraftServer",
         "test.MixinBundleItem",
         "test.MixinClientPlayInteractionManager_testSelector",
         "test.MixinMinecraftClient_testSelector"

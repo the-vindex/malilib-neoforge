@@ -17,7 +17,6 @@ public final class CagayakeGirlsGradlePlugin implements Plugin<PluginAware> {
                 settings.getGradle().getPluginManager().apply(CagayakeGirlsGradlePlugin.class);
             }
             case Project project -> {
-                project.getExtensions().create("forgifiedFabricApi", ForgifiedFabricApiExtension.class);
                 //project.getExtensions().create("cagayakeGirls", CagayakeGirlsGradleExtension.class);
                 project.getExtensions().create("extraMappings", MappingsExtension.class);
 
@@ -35,14 +34,6 @@ public final class CagayakeGirlsGradlePlugin implements Plugin<PluginAware> {
         repositories.maven(repo -> {
             repo.setName("NeoForge");
             repo.setUrl("https://maven.neoforged.net/releases/");
-        });
-        repositories.maven(repo -> {
-            repo.setName("KTTMavenSnapshots");
-            repo.setUrl("https://maven.kessokuteatime.work/snapshots/");
-        });
-        repositories.maven(repo -> {
-            repo.setName("Sinytra");
-            repo.setUrl("https://maven.su5ed.dev/releases/");
         });
     }
 }

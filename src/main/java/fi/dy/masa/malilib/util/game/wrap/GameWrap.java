@@ -174,29 +174,6 @@ public class GameWrap
         //getClient().ingameGUI.addChatMessage(ChatType.GAME_INFO, Text.of(msg));
     }
 
-    public static boolean sendChatMessage(String command)
-    {
-        PlayerEntity player = getClientPlayer();
-
-        if (player != null)
-        {
-            player.sendMessage(Text.of(command), false);
-            return true;
-        }
-
-        return false;
-    }
-
-    public static boolean sendCommand(String command)
-    {
-        if (command.startsWith("/") == false)
-        {
-            command = "/" + command;
-        }
-
-        return sendChatMessage(command);
-    }
-
     /**
      * @return The camera entity, if it's not null, otherwise returns the client player entity.
      */
