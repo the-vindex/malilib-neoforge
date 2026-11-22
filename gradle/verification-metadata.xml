@@ -1221,6 +1221,9 @@
          <artifact name="neoforge-21.1.250.module">
             <sha256 value="c53360e8d7954a7d6550f1322bd6a4b102643754fe6e0263b010602108819040" origin="verify-deps.py: NeoForge" />
          </artifact>
+         <artifact name="neoforge-21.1.250-sources.jar">
+            <sha256 value="a2811d794544ec67dc3fa43b900158f058ea534881ba1c160373554384311a0d" origin="verify-deps.py: NeoForge" />
+         </artifact>
       </component>
       <component group="net.neoforged" name="neoform" version="1.21.1-20240808.144430">
          <artifact name="neoform-1.21.1-20240808.144430.module">
