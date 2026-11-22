@@ -3,6 +3,7 @@
     "package": "fi.dy.masa.malilib.mixin",
     "compatibilityLevel": "JAVA_21",
     "minVersion": "0.8",
+    "mixins": [],
     "client": [
         "client.MixinMinecraftClient",
         "entity.IMixinAbstractHorseEntity",
@@ -16,6 +17,7 @@
         "hud.MixinInGameHud",
         "input.MixinKeyboard",
         "input.MixinMouse",
+        "item.IMixinContainerComponent",
         "item.MixinItemStack",
         "network.IMixinDataQueryHandler",
         "network.MixinClientConfigurationNetworkHandler",
@@ -28,13 +30,11 @@
         "screen.MixinInventoryScreen",
         "test.MixinBundleItem",
         "test.MixinClientPlayInteractionManager_testSelector",
-        "test.MixinMinecraftClient_testSelector"
+        "test.MixinMinecraftClient_testSelector",
+        "test.MixinSharedConstants"
     ],
+    "server": [],
     "injectors": {
         "defaultRequire": 1
-    },
-    "mixins": [
-        "item.IMixinContainerComponent",
-        "test.MixinSharedConstants"
-    ]
+    }
 }

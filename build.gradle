@@ -90,6 +90,12 @@ tasks.withType(AbstractArchiveTask).configureEach {
 }
 
 java {
+	// Audited fork: one exact compiler for reproducible jars, whatever JDK launches Gradle (a different javac changes
+	// the bytecode, and Litematica pins MaFgLib's checksum).
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+		vendor = JvmVendorSpec.ADOPTIUM
+	}
 	sourceCompatibility = JavaVersion.VERSION_21
 	targetCompatibility = JavaVersion.VERSION_21
 	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task

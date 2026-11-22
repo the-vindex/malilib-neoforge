@@ -9,3 +9,9 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
+
+plugins {
+	// provisions the pinned Java toolchain (build.gradle) on a machine that lacks it
+	id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
+}
+

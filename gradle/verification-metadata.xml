@@ -1449,5 +1449,18 @@
             <sha256 value="be3d17e14a62d03b1fc1cb0033450e2f0f4b2cf620be3b6c098894532cae24d4" origin="verify-deps.py: NeoForge" />
          </artifact>
       </component>
+      <component group="org.gradle.toolchains" name="foojay-resolver" version="1.0.0">
+         <artifact name="foojay-resolver-1.0.0.jar">
+            <sha256 value="78b86a47dfdf7697c9bd15da78983fd80da7247d6e02fc106bdf07e0388b60a8" origin="verify-deps.py: Gradle Central Plugin Repository" />
+         </artifact>
+         <artifact name="foojay-resolver-1.0.0.module">
+            <sha256 value="6190cf0e42e664c11e1ac0a785699ab02b549cea34392c679f36d8a2c550fcb9" origin="verify-deps.py: Gradle Central Plugin Repository" />
+         </artifact>
+      </component>
+      <component group="org.gradle.toolchains.foojay-resolver-convention" name="org.gradle.toolchains.foojay-resolver-convention.gradle.plugin" version="1.0.0">
+         <artifact name="org.gradle.toolchains.foojay-resolver-convention.gradle.plugin-1.0.0.pom">
+            <sha256 value="f133249a18754ae6a1d2701d00d849b1afba7b0683ddb5fc1b18a70071cec2fa" origin="verify-deps.py: Gradle Central Plugin Repository" />
+         </artifact>
+      </component>
    </components>
 </verification-metadata>
