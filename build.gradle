@@ -101,7 +101,9 @@ java {
 	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
 	// if it is present.
 	// If you remove this line, sources will not be generated.
-	withSourcesJar()
+	// Audited fork: no sources jar in the forks Maven publication — its text depends on the checkout's line endings, so
+	// the published Gradle module metadata (which records its hash) would not be reproducible. Litematica needs the binary.
+	// withSourcesJar()
 }
 
 jar {
@@ -124,5 +126,15 @@ publishing {
 		if (System.getenv("FORKS_MAVEN")) {
 			maven { name = "forks"; url = System.getenv("FORKS_MAVEN") }
 		}
+	}
+}
+
+// Audited fork: the toolchain spec above selects vendor + major only; this pins the exact compiler build, so a different
+// JDK patch release fails the build instead of silently producing other bytecode.
+def pinnedCompiler = providers.gradleProperty("audited_compiler").getOrElse("21.0.13.1+2-LTS")
+tasks.withType(JavaCompile).configureEach { task ->
+	doFirst {
+		def v = task.javaCompiler.get().metadata.javaRuntimeVersion
+		if (v != pinnedCompiler) throw new GradleException("compiler " + v + " is not the pinned " + pinnedCompiler + " (audited reproducible build)")
 	}
 }
